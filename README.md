@@ -43,6 +43,7 @@ Digital ocean makes it easier to create Kubernetes clusters.
     - Open **mongodb-secrets.yaml** file
     - Change the username and password with base64 encoded values.
     - Save the file.
+
 ![Change mongodb credentials](screenshots/3.png)
 - Run `kubectl apply -f .` to deploy the MongoDB cluster.
 - Run `kubectl get all` to check the status of the deployment.
@@ -53,10 +54,11 @@ Digital ocean makes it easier to create Kubernetes clusters.
 - Run `kubectl exec deployment/mongo-client -it -- /bin/bash` to connect to the MongoDB cluster.
 - The prompt should change to *root@mongo-client-xxx*
 ![Open bash terminal](screenshots/5.png)
-    - Run `mongo --host mongo-nodeport-svc --port 27017 -u <username> -p <password>` where *username* and *password* are the values you entered in **mongodb-secrets.yaml** file.
+    - Run `mongo --host mongo-nodeport-svc --port 27017 -u <username> -p <password>` where *username* and *password* are the decoded values for the base64 credentials you entered in **mongodb-secrets.yaml** file.
     - You should see the mongoDB info and prompt for mongo commands.
 ![Connect to mongoDb instance](screenshots/6.png)
 
 ### Step 5: Celebrate
 Congratulations! You have successfully deployed a MongoDB cluster on Kubernetes.
+
 ![Congratulations!](screenshots/7.png)
